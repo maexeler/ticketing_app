@@ -1,4 +1,4 @@
-package ch.zli.m223.controller.dto;
+package ch.zli.m223.controller.user.dto;
 
 import ch.zli.m223.model.AppUser;
 import ch.zli.m223.model.Role;

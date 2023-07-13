@@ -1,4 +1,4 @@
-package ch.zli.m223.controller;
+package ch.zli.m223.controller.user;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.zli.m223.controller.dto.UserDto;
-import ch.zli.m223.controller.dto.UserUpdateDto;
+import ch.zli.m223.controller.user.dto.UserDto;
+import ch.zli.m223.controller.user.dto.UserUpdateDto;
 import ch.zli.m223.service.UserService;
 import lombok.RequiredArgsConstructor;
 
