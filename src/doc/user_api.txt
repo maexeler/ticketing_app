@@ -1,0 +1,57 @@
+Rollen
+- guest
+- member
+- admin
+
+
+/api/v1/users
+
+Registrieren
+/api/v1/users/register
+    - firstName, shureName, email, password
+    - POST
+    -> -
+    => 200	Ok
+    => 409	Conflict
+    => 400	Bad Request (falsche parametern etc.)
+
+
+Verwalten
+    User Daten
+    /api/v1/users/{id}
+        - email password
+        - PUT
+        -> User
+        => 200	OK
+        => 400	Bad Request (falsche parametern etc.)
+        => 404	Not Found
+
+    User Berechtigungen
+    /api/v1/users/{id}/roles
+        - POST   -> Ersetzen der Rollen
+                    - list of roles
+        -> users
+        => 200	OK
+        => 400	Bad Request (falscen parametern etc.)
+        => 404	Not Found
+
+        - PUT    -> Ergänzen (add)
+                    - list of roles
+        -> user
+        => 200	OK
+        => 400	Bad Request (falscen parametern etc.)
+
+        - DELETE -> Alle Rollen löschen
+                    -
+        -> -
+        => 200	OK
+        => 404	Not Found
+
+
+Einloggen
+/api/v1/users/login
+    - email password
+    - GET
+-> Token
+=> 200	OK
+=> 404	Not Found
