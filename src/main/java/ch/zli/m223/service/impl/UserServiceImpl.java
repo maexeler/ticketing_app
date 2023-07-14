@@ -98,7 +98,10 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        password = passwordEncoder.encode(password);
+        if (password != null) {
+            password = passwordEncoder.encode(password);
+        }
+        
         return userRepository.update(
             user, 
             firstName, shureName, email, password, 

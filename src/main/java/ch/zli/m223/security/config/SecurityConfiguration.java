@@ -41,7 +41,22 @@ public class SecurityConfiguration {
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
+/*
+    // I think we do not need that, it's open by default
+    @Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				// May be not a good idee
+                // Allow any access from anywhere
+                registry.addMapping("/**")
+                    .allowedOrigins("*")
+                    .allowedMethods("*");
+			}
+		};
+	}
+*/
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

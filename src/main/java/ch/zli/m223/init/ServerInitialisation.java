@@ -22,8 +22,8 @@ public class ServerInitialisation implements ApplicationRunner {
         roleRepository.addRole(UserRoles.admin);
         
         userService.addUser("admin", "admin", "admin@admin.com", "admin");
-        userService.addUser("Max", "Werner", "mw@test.com", "maxwerner");
-        userService.addUser("Mini", "Max", "mm@test.com", "minimax");
+        userService.addUser("Max", "Werner", "max@werner.com", "maxwerner");
+        userService.addUser("Mini", "Max", "mini@max.com", "minimax");
         userService.addUser("Lady", "Gaga", "lady@gaga.com", "ladygaga");
     }
     
