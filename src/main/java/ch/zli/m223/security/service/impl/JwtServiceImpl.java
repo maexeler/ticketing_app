@@ -19,8 +19,12 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtServiceImpl implements JwtService {
-    @Value("${token.signing.key}")
-    private String jwtSigningKey;
+    @Value("${jwt.token.secret:aReallySecretJwtSecret}")
+    private String jwtSecret;
+
+    @Value("${jwt.token.validityInMs:3600000}")
+    private long jwtValidityInMs;
+
     @Override
     public String extractUserName(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -45,7 +49,7 @@ public class JwtServiceImpl implements JwtService {
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + jwtValidityInMs))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
     }
 
@@ -63,7 +67,16 @@ public class JwtServiceImpl implements JwtService {
     }
 
     private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(jwtSigningKey);
+        // The JWT JWA Specification (RFC 7518, Section 3.2) states that keys
+        // used with HMAC-SHA algorithms MUST have a size >= 256 bits
+        if (jwtSecret.length() < 256) {
+            // Extend and truncate jwtSecret to 256 characters
+            String expanded = jwtSecret;
+            while (expanded.length() < 256) expanded += jwtSecret;
+            jwtSecret = expanded.substring(0, 256);
+        }
+        
+        byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
