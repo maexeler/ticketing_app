@@ -118,4 +118,27 @@ public class UserServiceImpl implements UserService {
             getRole(role)
         );
     }
+
+    @Override
+    public AppUser getUserByName(String userName) {
+        return getUser(getUserIdByName(userName));
+    }
+
+    @Override
+    public AppUser updateUserByName(String userName, String firstName, String lastName, String email, String password,
+            String role) {
+        return updateUser(getUserIdByName(userName), firstName, lastName, email, password, role);
+    }
+ 
+    @Override
+    public void deleteUserByName(String userName) {
+        deleteUser(getUserIdByName(userName));
+    }
+
+    private Long getUserIdByName(String userName) {
+        AppUser user = userRepository.findByEmail(userName)
+            .orElseThrow(() -> new UserNotFoundException());
+        return user.getId();
+    }
+
 }

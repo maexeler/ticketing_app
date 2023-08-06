@@ -11,6 +11,7 @@ import ch.zli.m223.security.dto.SignUpDto;
 import ch.zli.m223.security.service.AuthenticationService;
 import ch.zli.m223.security.service.JwtService;
 import ch.zli.m223.service.UserService;
+import ch.zli.m223.service.exception.InvalidEmailOrPasswordException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -35,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.email, request.password));
         var user = userRepository.findByEmail(request.email)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
+                .orElseThrow(() -> new InvalidEmailOrPasswordException());
         var jwt = jwtService.generateToken(user);
         return new JwtTokenDto(jwt);
     }
