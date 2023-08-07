@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ch.zli.m223.repository.RoleRepository;
 import ch.zli.m223.roles.UserRoles;
-import ch.zli.m223.service.UserService;
+import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
 @Component

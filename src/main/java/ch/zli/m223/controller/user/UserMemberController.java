@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.controller.user.dto.UserDto;
 import ch.zli.m223.controller.user.dto.UserUpdateDto;
-import ch.zli.m223.service.UserService;
+import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
 /**

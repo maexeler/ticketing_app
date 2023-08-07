@@ -1,4 +1,4 @@
-package ch.zli.m223.service;
+package ch.zli.m223.service.user;
 
 import java.util.List;
 

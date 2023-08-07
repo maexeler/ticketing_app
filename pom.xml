@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ch.zli.m223</groupId>
-	<artifactId>ticketing_app</artifactId>
+	<artifactId>rest_example_app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ticketing_app</name>
+	<name>rest_user_administration</name>
 	<description>Demo project for Spring Boot with JWT</description>
 	<properties>
 		<java.version>17</java.version>

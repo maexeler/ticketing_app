@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ch.zli.m223.controller.user.dto.RoleDto;
 import ch.zli.m223.controller.user.dto.UserDto;
 import ch.zli.m223.controller.user.dto.UserUpdateDto;
-import ch.zli.m223.service.UserService;
+import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -48,7 +48,7 @@ public class UserAdminController {
      */
     @GetMapping("/{id}")
     UserDto getUser(@PathVariable("id") Long id) {
-        return new UserDto(userService.getUser(id));
+            return new UserDto(userService.getUser(id));
     }
 
     /**
@@ -82,7 +82,7 @@ public class UserAdminController {
     }
 
     /**
-     * Change us users role by id
+     * Change users role by id
      * @param id the users id
      * @param role any role you wish, no chech if its a valid role inside the application
      * @return (HttpStatus.OK & the user as UserDto) or HttpStatus.BAD_REQUEST if user not found

@@ -31,6 +31,12 @@ public class SecurityConfiguration {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                     request -> request
+                        // Spring Boot 3.0 also applies security to error dispatches.
+                        // Allow public access to the '/error' path 
+                        // otherwise 403 is returned on any exception
+                        .requestMatchers("/error").permitAll()
+
+                        // Application security
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasAuthority(UserRoles.admin)
                         .requestMatchers("/api/v1/member/**").hasAuthority(UserRoles.member)

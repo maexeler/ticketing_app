@@ -10,8 +10,8 @@ import ch.zli.m223.security.dto.SignInDto;
 import ch.zli.m223.security.dto.SignUpDto;
 import ch.zli.m223.security.service.AuthenticationService;
 import ch.zli.m223.security.service.JwtService;
-import ch.zli.m223.service.UserService;
-import ch.zli.m223.service.exception.InvalidEmailOrPasswordException;
+import ch.zli.m223.service.user.UserService;
+import ch.zli.m223.service.user.exception.InvalidEmailOrPasswordException;
 import lombok.RequiredArgsConstructor;
 
 @Service

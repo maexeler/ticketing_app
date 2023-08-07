@@ -1,4 +1,4 @@
-package ch.zli.m223.service.impl;
+package ch.zli.m223.service.user.impl;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import ch.zli.m223.model.AppUser;
 import ch.zli.m223.model.Role;
-import ch.zli.m223.service.UserService;
-import ch.zli.m223.service.exception.*;
+import ch.zli.m223.service.user.UserService;
+import ch.zli.m223.service.user.exception.*;
 import lombok.RequiredArgsConstructor;
 import ch.zli.m223.repository.RoleRepository;
 import ch.zli.m223.repository.UserRepository;
