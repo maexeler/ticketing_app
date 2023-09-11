@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasAuthority(UserRoles.admin)
                         .requestMatchers("/api/v1/member/**").hasAuthority(UserRoles.member)
+                        .requestMatchers("/api/v1/member/todos").hasAuthority(UserRoles.member)
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
