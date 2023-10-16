@@ -8,7 +8,7 @@ public interface TodoService {
 
     Todo addTodo(String name, String title, boolean completed);
     List<Todo> getAllTodos(String userName);
-    Todo updateTodo(String name, Long userId, Long id, String title, Boolean completed);
+    Todo updateTodo(String name, Long id, String title, Boolean completed);
     void deleteTodo(String userName, Long id);
 
 }

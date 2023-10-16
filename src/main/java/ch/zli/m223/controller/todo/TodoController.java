@@ -48,8 +48,7 @@ public class TodoController {
     ) {
         return new TodoDto(todoService.updateTodo(
             principal.getName(),
-            todo.userId, id, 
-            todo.title, todo.completed
+            id, todo.title, todo.completed
         ));
     }
 

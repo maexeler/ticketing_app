@@ -8,6 +8,8 @@ import ch.zli.m223.model.AppUser;
 import ch.zli.m223.model.Todo;
 import ch.zli.m223.repository.TodoRepository;
 import ch.zli.m223.service.todo.TodoService;
+import ch.zli.m223.service.todo.exception.TodoNotFoundException;
+import ch.zli.m223.service.todo.exception.UserNotEqualException;
 import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -31,18 +33,18 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public Todo updateTodo(String userName, Long userId, Long id, String title, Boolean completed) {
+    public Todo updateTodo(String userName, Long id, String title, Boolean completed) {
         AppUser user = userService.getUserByName(userName);
-        //if (user.getId() != userId) { throw new RuntimeException();}
-        Todo todo = todoRepository.findById(id).orElseThrow(()->new RuntimeException());
+        Todo todo = todoRepository.findById(id).orElseThrow(()->new TodoNotFoundException());
+        if (user.getId() != todo.getUserId()) {throw new UserNotEqualException(); }
         return todoRepository.updateTodo(todo, title, completed);
-
     }
 
     @Override
     public void deleteTodo(String userName, Long id) {
         AppUser user = userService.getUserByName(userName);
-        //if (user.getId() != id) {throw new RuntimeException();}
+        Todo todo = todoRepository.findById(id).orElseThrow(()->new TodoNotFoundException());
+        if (user.getId() != todo.getUserId()) {throw new UserNotEqualException(); }
         todoRepository.deleteById(id);
     }
     
